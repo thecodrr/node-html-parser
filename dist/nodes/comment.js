@@ -47,6 +47,9 @@ var CommentNode = /** @class */ (function (_super) {
         get: function () {
             return this.rawText;
         },
+        set: function (value) {
+            this.rawText = value;
+        },
         enumerable: false,
         configurable: true
     });

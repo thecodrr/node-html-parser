@@ -93,6 +93,9 @@ var TextNode = /** @class */ (function (_super) {
         get: function () {
             return (0, entities_1.decodeHTML5)(this.rawText);
         },
+        set: function (value) {
+            this.rawText = value;
+        },
         enumerable: false,
         configurable: true
     });

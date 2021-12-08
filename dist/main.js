@@ -132,6 +132,9 @@ define("nodes/text", ["require", "exports", "entities", "nodes/node", "nodes/typ
             get: function () {
                 return (0, entities_1.decodeHTML5)(this.rawText);
             },
+            set: function (value) {
+                this.rawText = value;
+            },
             enumerable: false,
             configurable: true
         });
@@ -1499,6 +1502,9 @@ define("nodes/comment", ["require", "exports", "nodes/node", "nodes/type"], func
         Object.defineProperty(CommentNode.prototype, "nodeValue", {
             get: function () {
                 return this.rawText;
+            },
+            set: function (value) {
+                this.rawText = value;
             },
             enumerable: false,
             configurable: true
