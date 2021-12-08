@@ -850,6 +850,18 @@ export default class HTMLElement extends Node {
 	}
 }
 
+/**
+ * HTMLRootElement, which contains a set of children.
+ *.
+ * @class HTMLRootElement
+ * @extends {HTMLElement}
+ */
+export class HTMLRootElement extends HTMLElement {
+	public createElement<K extends keyof HTMLElementTagNameMap>(tagName: K, _options?: ElementCreationOptions): HTMLElement {
+		return new HTMLElement(tagName, {}, '', null);
+	}
+}
+
 // https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name
 const kMarkupPattern = /<!--[\s\S]*?-->|<(\/?)([a-zA-Z][-.:0-9_a-zA-Z]*)((?:\s+[^>]*?(?:(?:'[^']*')|(?:"[^"]*"))?)*)\s*(\/?)>/g;
 const kAttributePattern = /(?:^|\s)(id|class)\s*=\s*((?:'[^']*')|(?:"[^"]*")|\S+)/gi;
@@ -960,10 +972,10 @@ export function base_parse(data: string, options = { lowerCaseTagName: false, co
 	}
 
 	const createRange = (startPos: number, endPos: number): [number, number] => [startPos - frameFlagOffset, endPos - frameFlagOffset];
-	const root = new HTMLElement(null, {}, '', null, [0, data.length]);
+	const root = new HTMLRootElement(null, {}, '', null, [0, data.length]);
 
-	let currentParent = root;
-	const stack = [root];
+	let currentParent: HTMLElement = root;
+	const stack: HTMLElement[] = [root];
 	let lastTextPos = -1;
 	let noNestedTagIndex: undefined | number = undefined;
 	let match: RegExpExecArray;
@@ -1105,7 +1117,7 @@ export function base_parse(data: string, options = { lowerCaseTagName: false, co
  * Parses HTML and returns a root element
  * Parse a chuck of HTML source.
  */
-export function parse(data: string, options = { lowerCaseTagName: false, comment: false } as Partial<Options>) {
+export function parse(data: string, options = { lowerCaseTagName: false, comment: false } as Partial<Options>): HTMLRootElement {
 	const stack = base_parse(data, options);
 
 	const [root] = stack;
@@ -1137,5 +1149,5 @@ export function parse(data: string, options = { lowerCaseTagName: false, comment
 	// 		node.parentNode = null;
 	// 	}
 	// });
-	return root;
+	return <HTMLRootElement>root;
 }
