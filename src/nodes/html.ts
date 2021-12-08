@@ -221,6 +221,11 @@ export default class HTMLElement extends Node {
 			return child !== node;
 		});
 	}
+
+	public hasChildNodes() {
+		return this.childNodes.length > 0;
+	}
+
 	/**
 	 * Exchanges given child with new child
 	 * @param {HTMLElement} oldNode     node to exchange
