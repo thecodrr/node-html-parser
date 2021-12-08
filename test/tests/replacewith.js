@@ -57,7 +57,7 @@ describe('should parse tag correct', function () {
 `);
 		root.querySelectorAll('some-custom-element').forEach((node) => {
 			//const nodeNew = parse('<div></div>') // not working, we cannot change root node
-			const nodeNew = parse('<html><div></div></html>').querySelector('div')
+			const nodeNew = parse('<html><div></div></html>').querySelector('div');
 
 			for (const [name, value] of Object.entries(node.attributes)) {
 				nodeNew.setAttribute(name, value);
@@ -101,7 +101,7 @@ describe('should parse tag correct', function () {
 		div.classList.toggle('bar');
 		div.classNames.should.eql('foo bar');
 
-		div.classList.replace('bar', 'mycls')
+		div.classList.replace('bar', 'mycls');
 		div.classNames.should.eql('foo mycls');
 
 		div.classList.contains('foo').should.eql(true);

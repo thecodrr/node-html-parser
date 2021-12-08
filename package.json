@@ -60,7 +60,7 @@
 		"@typescript-eslint/parser": "latest",
 		"blanket": "latest",
 		"cheerio": "^1.0.0-rc.5",
-		"rimraf": "^3.0.2",
+		"cross-env": "^7.0.3",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "latest",
 		"eslint-plugin-import": "latest",
@@ -72,13 +72,13 @@
 		"mocha-each": "^2.0.1",
 		"np": "latest",
 		"parse5": "^6.0.1",
+		"rimraf": "^3.0.2",
 		"should": "latest",
 		"spec": "latest",
 		"standard-version": "^9.3.1",
 		"travis-cov": "latest",
 		"ts-node": "^10.2.1",
-		"typescript": "latest",
-		"cross-env": "^7.0.3"
+		"typescript": "latest"
 	},
 	"config": {
 		"blanket": {

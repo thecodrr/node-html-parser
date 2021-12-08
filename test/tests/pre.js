@@ -15,8 +15,8 @@ describe('pre tag', function () {
 				script: true,
 				noscript: true,
 				style: true,
-				pre: true
-			}
+				pre: true,
+			},
 		});
 		root.toString().should.eql(html);
 	});
@@ -29,8 +29,8 @@ describe('pre tag', function () {
     `;
 		const root = parse(html, {
 			blockTextElements: {
-				pre: false
-			}
+				pre: false,
+			},
 		});
 		root.toString().should.eql(`
     <div class="language-python highlighter-rouge">
@@ -45,7 +45,7 @@ describe('pre tag', function () {
     </div>
     `;
 		const root = parse(html, {
-			blockTextElements: {}
+			blockTextElements: {},
 		});
 		const div = root.firstChild.firstChild;
 		const pre = div.firstChild;
@@ -54,8 +54,8 @@ describe('pre tag', function () {
 	});
 	// see: https://github.com/taoqf/node-html-parser/issues/156
 	it('does not treat pre* tag as pre (partial match)', () => {
-    const docRoot = parse("<premises><color>Red</color></premises>");
-    Object.getPrototypeOf(docRoot.firstChild.firstChild).should.eql(HTMLElement.prototype);
-    docRoot.firstChild.firstChild.tagName.should.eql('COLOR');
-  })
+		const docRoot = parse('<premises><color>Red</color></premises>');
+		Object.getPrototypeOf(docRoot.firstChild.firstChild).should.eql(HTMLElement.prototype);
+		docRoot.firstChild.firstChild.tagName.should.eql('COLOR');
+	});
 });

@@ -1,7 +1,5 @@
 {
-	"include": [
-		"./src/"
-	],
+	"include": ["./src/"],
 	"compilerOptions": {
 		"module": "commonjs",
 		"target": "es5",
@@ -29,9 +27,7 @@
 		"importHelpers": false,
 		"inlineSources": false,
 		"isolatedModules": false,
-		"lib": [
-			"esnext"
-		],
+		"lib": ["esnext", "DOM"],
 		"listFiles": false,
 		"listEmittedFiles": false,
 		"locale": "zh_CN",
@@ -60,9 +56,7 @@
 		"suppressImplicitAnyIndexErrors": true,
 		"traceResolution": false,
 		"typeRoots": [],
-		"types": [
-			"node"
-		],
+		"types": ["node"],
 		"watch": false
 	}
 }
