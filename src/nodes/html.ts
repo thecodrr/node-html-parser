@@ -267,6 +267,16 @@ export default class HTMLElement extends Node {
 		const content = [new TextNode(val, this)];
 		this.childNodes = content;
 	}
+
+	public get nodeValue(): string | null {
+		if (this.nodeType === NodeType.TEXT_NODE) {
+			return this.textContent;
+		} else if (this.nodeType === NodeType.COMMENT_NODE) {
+			return (<CommentNode>this).textContent;
+		}
+		return null;
+	}
+
 	/**
 	 * Get unescaped text value of current node and its children.
 	 * @return {string} text content
