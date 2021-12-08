@@ -959,16 +959,13 @@ export function base_parse(data: string, options = { lowerCaseTagName: false, co
 		style: true,
 		pre: true,
 	};
-	const element_names = Object.keys(elements);
-	const kBlockTextElements = element_names.map((it) => new RegExp(`^${it}$`, 'i'));
-	const kIgnoreElements = element_names.filter((it) => elements[it]).map((it) => new RegExp(`^${it}$`, 'i'));
 
 	function element_should_be_ignore(tag: string) {
-		return kIgnoreElements.some((it) => it.test(tag));
+		return Boolean(elements[tag]);
 	}
 
 	function is_block_text_element(tag: string) {
-		return kBlockTextElements.some((it) => it.test(tag));
+		return elements.hasOwnProperty(tag);
 	}
 
 	const createRange = (startPos: number, endPos: number): [number, number] => [startPos - frameFlagOffset, endPos - frameFlagOffset];
