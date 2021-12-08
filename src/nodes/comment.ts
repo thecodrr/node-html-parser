@@ -25,6 +25,10 @@ export default class CommentNode extends Node {
 		return this.rawText;
 	}
 
+	public set nodeValue(value: string) {
+		this.rawText = value;
+	}
+
 	public toString() {
 		return `<!--${this.rawText}-->`;
 	}
