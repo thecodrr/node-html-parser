@@ -1,4 +1,4 @@
-import he from 'he';
+import { decodeHTML5 } from 'entities';
 import { selectAll, selectOne } from 'css-select';
 import Node from './node';
 import NodeType from './type';
@@ -35,7 +35,7 @@ type IRawTagName =
 
 function decode(val: string) {
 	// clone string
-	return JSON.parse(JSON.stringify(he.decode(val))) as string;
+	return JSON.parse(JSON.stringify(decodeHTML5(val))) as string;
 }
 
 export interface KeyAttributes {
