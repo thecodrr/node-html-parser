@@ -486,6 +486,17 @@ export default class HTMLElement extends Node {
 		});
 	}
 
+	public getElementById(id: string): HTMLElement | null {
+		for (const node of this.childNodes) {
+			if (node.nodeType === NodeType.ELEMENT_NODE) {
+				const element = <HTMLElement>node;
+				if (element.id === id) return element;
+				else if (element.hasChildNodes()) return element.getElementById(id);
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * find elements by their tagName
 	 * @param {string} tagName the tagName of the elements to select
