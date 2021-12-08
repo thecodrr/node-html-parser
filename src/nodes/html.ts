@@ -268,12 +268,7 @@ export default class HTMLElement extends Node {
 		this.childNodes = content;
 	}
 
-	public get nodeValue(): string | null {
-		if (this.nodeType === NodeType.TEXT_NODE) {
-			return this.textContent;
-		} else if (this.nodeType === NodeType.COMMENT_NODE) {
-			return (<CommentNode>this).textContent;
-		}
+	public get nodeValue(): null {
 		return null;
 	}
 

@@ -3,7 +3,7 @@ import NodeType from './type';
 import HTMLElement from './html';
 
 export default class CommentNode extends Node {
-	public constructor(public rawText: string, parentNode: HTMLElement, range?: [ number, number ]) {
+	public constructor(public rawText: string, parentNode: HTMLElement, range?: [number, number]) {
 		super(parentNode, range);
 	}
 
@@ -18,6 +18,10 @@ export default class CommentNode extends Node {
 	 * @return {string} text content
 	 */
 	public get text() {
+		return this.rawText;
+	}
+
+	public get nodeValue(): string {
 		return this.rawText;
 	}
 

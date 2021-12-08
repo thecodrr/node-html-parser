@@ -62,6 +62,10 @@ export default class TextNode extends Node {
 		return decodeHTML5(this.rawText);
 	}
 
+	public get nodeValue(): string {
+		return decodeHTML5(this.rawText);
+	}
+
 	/**
 	 * Detect if the node contains only white space.
 	 * @return {boolean}
