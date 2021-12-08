@@ -18,7 +18,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var he_1 = require("he");
+var entities_1 = require("entities");
 var node_1 = __importDefault(require("./node"));
 var type_1 = __importDefault(require("./type"));
 /**
@@ -84,7 +84,7 @@ var TextNode = /** @class */ (function (_super) {
          * @return {string} text content
          */
         get: function () {
-            return (0, he_1.decode)(this.rawText);
+            return (0, entities_1.decodeHTML5)(this.rawText);
         },
         enumerable: false,
         configurable: true
@@ -134,6 +134,6 @@ function trimText(text) {
     if (endPos === undefined)
         endPos = text.length - 1;
     var hasLeadingSpace = startPos > 0 && /[^\S\r\n]/.test(text[startPos - 1]);
-    var hasTrailingSpace = endPos < (text.length - 1) && /[^\S\r\n]/.test(text[endPos + 1]);
+    var hasTrailingSpace = endPos < text.length - 1 && /[^\S\r\n]/.test(text[endPos + 1]);
     return (hasLeadingSpace ? ' ' : '') + text.slice(startPos, endPos + 1) + (hasTrailingSpace ? ' ' : '');
 }

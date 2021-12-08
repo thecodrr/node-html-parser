@@ -55,7 +55,7 @@ define("nodes/type", ["require", "exports"], function (require, exports) {
     })(NodeType || (NodeType = {}));
     exports.default = NodeType;
 });
-define("nodes/text", ["require", "exports", "he", "nodes/node", "nodes/type"], function (require, exports, he_1, node_1, type_1) {
+define("nodes/text", ["require", "exports", "entities", "nodes/node", "nodes/type"], function (require, exports, entities_1, node_1, type_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     node_1 = __importDefault(node_1);
@@ -123,7 +123,7 @@ define("nodes/text", ["require", "exports", "he", "nodes/node", "nodes/type"], f
              * @return {string} text content
              */
             get: function () {
-                return (0, he_1.decode)(this.rawText);
+                return (0, entities_1.decodeHTML5)(this.rawText);
             },
             enumerable: false,
             configurable: true
@@ -173,7 +173,7 @@ define("nodes/text", ["require", "exports", "he", "nodes/node", "nodes/type"], f
         if (endPos === undefined)
             endPos = text.length - 1;
         var hasLeadingSpace = startPos > 0 && /[^\S\r\n]/.test(text[startPos - 1]);
-        var hasTrailingSpace = endPos < (text.length - 1) && /[^\S\r\n]/.test(text[endPos + 1]);
+        var hasTrailingSpace = endPos < text.length - 1 && /[^\S\r\n]/.test(text[endPos + 1]);
         return (hasLeadingSpace ? ' ' : '') + text.slice(startPos, endPos + 1) + (hasTrailingSpace ? ' ' : '');
     }
 });
@@ -282,7 +282,7 @@ define("matcher", ["require", "exports", "nodes/type"], function (require, expor
         findAll: findAll
     };
 });
-define("nodes/html", ["require", "exports", "entities", "css-select", "nodes/node", "nodes/type", "nodes/text", "matcher", "back", "nodes/comment"], function (require, exports, entities_1, css_select_1, node_2, type_3, text_1, matcher_1, back_1, comment_1) {
+define("nodes/html", ["require", "exports", "entities", "css-select", "nodes/node", "nodes/type", "nodes/text", "matcher", "back", "nodes/comment"], function (require, exports, entities_2, css_select_1, node_2, type_3, text_1, matcher_1, back_1, comment_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.parse = exports.base_parse = exports.HTMLRootElement = void 0;
@@ -295,7 +295,7 @@ define("nodes/html", ["require", "exports", "entities", "css-select", "nodes/nod
     var voidTags = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
     function decode(val) {
         // clone string
-        return JSON.parse(JSON.stringify((0, entities_1.decodeHTML5)(val)));
+        return JSON.parse(JSON.stringify((0, entities_2.decodeHTML5)(val)));
     }
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements
     var Htags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hgroup'];
@@ -1428,7 +1428,7 @@ define("nodes/html", ["require", "exports", "entities", "css-select", "nodes/nod
     }
     exports.parse = parse;
 });
-define("nodes/node", ["require", "exports", "he"], function (require, exports, he_2) {
+define("nodes/node", ["require", "exports", "entities"], function (require, exports, entities_3) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     /**
@@ -1443,7 +1443,7 @@ define("nodes/node", ["require", "exports", "he"], function (require, exports, h
                 enumerable: false,
                 writable: true,
                 configurable: true,
-                value: range !== null && range !== void 0 ? range : [-1, -1]
+                value: range !== null && range !== void 0 ? range : [-1, -1],
             });
         }
         Object.defineProperty(Node.prototype, "innerText", {
@@ -1455,10 +1455,10 @@ define("nodes/node", ["require", "exports", "he"], function (require, exports, h
         });
         Object.defineProperty(Node.prototype, "textContent", {
             get: function () {
-                return (0, he_2.decode)(this.rawText);
+                return (0, entities_3.decodeHTML5)(this.rawText);
             },
             set: function (val) {
-                this.rawText = (0, he_2.encode)(val);
+                this.rawText = (0, entities_3.encodeHTML5)(val);
             },
             enumerable: false,
             configurable: true

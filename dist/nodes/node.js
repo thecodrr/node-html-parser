@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var he_1 = require("he");
+var entities_1 = require("entities");
 /**
  * Node Class as base class for TextNode and HTMLElement.
  */
@@ -13,7 +13,7 @@ var Node = /** @class */ (function () {
             enumerable: false,
             writable: true,
             configurable: true,
-            value: range !== null && range !== void 0 ? range : [-1, -1]
+            value: range !== null && range !== void 0 ? range : [-1, -1],
         });
     }
     Object.defineProperty(Node.prototype, "innerText", {
@@ -25,10 +25,10 @@ var Node = /** @class */ (function () {
     });
     Object.defineProperty(Node.prototype, "textContent", {
         get: function () {
-            return (0, he_1.decode)(this.rawText);
+            return (0, entities_1.decodeHTML5)(this.rawText);
         },
         set: function (val) {
-            this.rawText = (0, he_1.encode)(val);
+            this.rawText = (0, entities_1.encodeHTML5)(val);
         },
         enumerable: false,
         configurable: true
