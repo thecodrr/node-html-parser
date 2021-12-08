@@ -14,5 +14,6 @@ export default class CommentNode extends Node {
      * @return {string} text content
      */
     get text(): string;
+    get nodeValue(): string;
     toString(): string;
 }

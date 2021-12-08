@@ -282,12 +282,6 @@ var HTMLElement = /** @class */ (function (_super) {
     });
     Object.defineProperty(HTMLElement.prototype, "nodeValue", {
         get: function () {
-            if (this.nodeType === type_1.default.TEXT_NODE) {
-                return this.textContent;
-            }
-            else if (this.nodeType === type_1.default.COMMENT_NODE) {
-                return this.textContent;
-            }
             return null;
         },
         enumerable: false,

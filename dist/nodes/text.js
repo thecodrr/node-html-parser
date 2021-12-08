@@ -89,6 +89,13 @@ var TextNode = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(TextNode.prototype, "nodeValue", {
+        get: function () {
+            return (0, entities_1.decodeHTML5)(this.rawText);
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(TextNode.prototype, "isWhitespace", {
         /**
          * Detect if the node contains only white space.

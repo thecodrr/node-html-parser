@@ -128,6 +128,13 @@ define("nodes/text", ["require", "exports", "entities", "nodes/node", "nodes/typ
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(TextNode.prototype, "nodeValue", {
+            get: function () {
+                return (0, entities_1.decodeHTML5)(this.rawText);
+            },
+            enumerable: false,
+            configurable: true
+        });
         Object.defineProperty(TextNode.prototype, "isWhitespace", {
             /**
              * Detect if the node contains only white space.
@@ -527,12 +534,6 @@ define("nodes/html", ["require", "exports", "entities", "css-select", "nodes/nod
         });
         Object.defineProperty(HTMLElement.prototype, "nodeValue", {
             get: function () {
-                if (this.nodeType === type_3.default.TEXT_NODE) {
-                    return this.textContent;
-                }
-                else if (this.nodeType === type_3.default.COMMENT_NODE) {
-                    return this.textContent;
-                }
                 return null;
             },
             enumerable: false,
@@ -1489,6 +1490,13 @@ define("nodes/comment", ["require", "exports", "nodes/node", "nodes/type"], func
              * Get unescaped text value of current node and its children.
              * @return {string} text content
              */
+            get: function () {
+                return this.rawText;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(CommentNode.prototype, "nodeValue", {
             get: function () {
                 return this.rawText;
             },

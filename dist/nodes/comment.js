@@ -43,6 +43,13 @@ var CommentNode = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(CommentNode.prototype, "nodeValue", {
+        get: function () {
+            return this.rawText;
+        },
+        enumerable: false,
+        configurable: true
+    });
     CommentNode.prototype.toString = function () {
         return "<!--" + this.rawText + "-->";
     };

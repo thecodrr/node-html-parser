@@ -86,7 +86,7 @@ export default class HTMLElement extends Node {
     get rawText(): string;
     get textContent(): string;
     set textContent(val: string);
-    get nodeValue(): string | null;
+    get nodeValue(): null;
     /**
      * Get unescaped text value of current node and its children.
      * @return {string} text content

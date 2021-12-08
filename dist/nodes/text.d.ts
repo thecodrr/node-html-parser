@@ -33,6 +33,7 @@ export default class TextNode extends Node {
      * @return {string} text content
      */
     get text(): string;
+    get nodeValue(): string;
     /**
      * Detect if the node contains only white space.
      * @return {boolean}
